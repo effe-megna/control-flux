@@ -4,7 +4,7 @@
 [![npm package][npm-badge]][npm]
 [![Coveralls][coveralls-badge]][coveralls]
 
-🎈 `control-flux` provide components that mimic some methods of javascript, for a pure `declarative` approach, or something like that.
+🎈 **control-flux** provide components that mimic some methods of javascript, for a pure **declarative** approach, or something like that.
 
 ## Installation
 
