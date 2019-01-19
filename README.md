@@ -17,19 +17,65 @@ pip install foobar
 ## 👓 Some example
 
 You can map users and display only the right user by username
-<div align="center">
-  <img alt="Map If" width="85%" src="assets/MapIfExample.png"/>
-</div>
+```javascript
+import { Map, If } from "control-flux"
+
+export const User = () => {
+  return (
+    <Map
+      on={[
+        { username: "Francis" },
+        { username: "John" },
+        { username: "Kit" }
+      ]}
+    >
+      {user => (
+        <If condition={user.username === "Francis"}>
+          {user.username}
+        </If>
+      )}
+    </Map>
+  )
+}
+```
 
 or display n times a component
-<div align="center">
-  <img alt="Times" width="85%" src="assets/TimesExample.png"/>
-</div>
+```javascript
+import { Times } from "control-flux"
+
+export const Times = () => {
+  return (
+    <Times n={3}>
+      <BedsIcon />
+    </Times>
+  )
+}
+```
 
 or filter and join something like
-<div align="center">
-  <img alt="Filter Join" width="85%" src="assets/FilterJoinExample.png"/>
-</div>
+```javascript
+import { Filter, Join } from "control-flux"
+
+export const Useless = () => {
+  return (
+    <Filter
+      on={["really", "wtf", "amazing"]}
+      predicate={v => v !== "wtf"}
+    >
+      {wordsFiltered => (
+        <Join
+          on={wordsFiltered}
+          separator=" ✌️ "
+        >
+          {v => v}
+        </Join>
+      )}
+    </Filter>
+  )
+}
+
+result: really ✌️ amazing
+```
 
 ## API
 <details>
