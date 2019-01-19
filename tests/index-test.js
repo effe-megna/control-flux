@@ -12,7 +12,12 @@ import {
   Some,
   Includes,
   Sort,
-  Times
+  Times,
+  Fill,
+  Find,
+  FindIndex,
+  Join,
+  Reverse
 } from "../src"
 
 describe('Components', () => {
@@ -42,17 +47,23 @@ describe('Components', () => {
   })
 
   it("render by Filter", () => {
-    // render((
-    //   <Filter
-    //     on={["banana", "kiwi"]}
-    //     condition={v => v === "kiwi"}
-    //   >
-    //     {v => v}
-    //   </Filter>
-    // ), node, () => {
-    //   console.log(node.innerHTML)
-    //   expect(node.innerHTML).toContain("kiwi")
-    // })
+    render((
+      <Filter
+        on={["really", "wtf", "amazing"]}
+        predicate={v => v !== "wtf"}
+      >
+        {wordsFiltered => (
+          <Join
+            on={wordsFiltered}
+            separator=" ✌️ "
+          >
+            {v => v}
+          </Join>
+        )}
+      </Filter>
+    ), node, () => {
+      expect(node.innerHTML).toBe("really ✌️ amazing")
+    })
   })
 
   it("render by If", () => {
@@ -140,11 +151,96 @@ describe('Components', () => {
     })
   })
 
-  it("render by Times", () => {
+  // it("render by Times", () => {
+  //   render((
+  //     <Times n={2}>{i => "gg"}</Times>
+  //   ), node, () => {
+  //     expect(node.innerHTML).toBe("heyheyhey")
+  //   })
+  // })
+
+  it("render by Fill", () => {
     render((
-      <Times n={2}>{i => "gg"}</Times>
+      <Fill
+        on={["peach", "orange", "papaya"]}
+        value="peach"
+      >
+        {v => v}
+      </Fill>
     ), node, () => {
-      expect(node.innerHTML).toBe("heyheyhey")
+      expect(node.innerHTML).toBe("peachpeachpeach")
+    })
+  })
+
+  it("render by Find", () => {
+    render((
+      <Find
+        on={["nectarine", "orange"]}
+        predicate={v => v === "orange"}
+      >
+        {v => v}
+      </Find>
+    ), node, () => {
+      expect(node.innerHTML).toBe("orange")
+    })
+  })
+
+  it("render by FindIndex", () => {
+    render((
+      <FindIndex
+        on={["pear", "lime", "peach"]}
+        predicate={v => v === "peach"}
+      >
+        {v => v}
+      </FindIndex>
+    ), node, () => {
+      expect(node.innerHTML).toBe("2")
+    })
+  })
+
+  it("render by Join", () => {
+    render((
+      <Join
+        on={["fig", "lychee", "mango"]}
+        separator=" - "
+      >
+        {v => v}
+      </Join>
+    ), node, () => {
+      expect(node.innerHTML).toBe("fig - lychee - mango")
+    })
+  })
+
+  it("render by Reverse", () => {
+    render((
+      <Reverse
+        on={["raspberry", "quince"]}
+      >
+        {v => v}
+      </Reverse>
+    ), node, () => {
+      expect(node.innerHTML).toBe("quinceraspberry")
+    })
+  })
+
+  it("readme Map If example", () => {
+    render((
+      <Map
+        on={[
+          { username: "Francis" },
+          { username: "John" },
+          { username: "Kit" }
+        ]}
+      >
+        {user => (
+          <If condition={user.username === "Francis"}>
+            {user.username}
+          </If>
+        )}
+      </Map>
+    ), node, () => {
+      expect(node.innerHTML).toBe("Francis")
     })
   })
 })
+

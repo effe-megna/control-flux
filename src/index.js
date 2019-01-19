@@ -3,13 +3,13 @@ import React from 'react'
 export const Every = ({ on = [], condition, children }) =>
   on.every(condition) ? children : null;
 
-export const Filter = ({ on = [], condition, children }) =>
-  on.map(v => (condition(v) ? children : null));
+export const Filter = ({ on = [], predicate, children }) =>
+  children(on.filter(predicate))
 
 export const First = ({ on = [] }) =>
   on[0];
 
-export const If = ({ condition, elze, children }) =>
+export const If = ({ condition, elze = null, children }) =>
   (condition ? children : elze);
 
 export const Last = ({ on = [] }) =>
@@ -30,3 +30,33 @@ export const Sort = ({ on = [], children }) =>
 export const Times = ({ n = 0, children }) =>
   [...Array(n)].map((v, i) => children(i));
 
+export const Fill = ({
+  on = [],
+  value,
+  start = 0,
+  end = on.length,
+  children
+}) => children(on.fill(value, start, end))
+
+export const Find = ({
+  on = [],
+  predicate = false,
+  children
+}) => children(on.find(predicate)) || null
+
+export const FindIndex = ({
+  on = [],
+  predicate = false,
+  children
+}) => children(on.findIndex(predicate))
+
+export const Join = ({
+  on = [],
+  separator,
+  children
+}) => children(on.join(separator))
+
+export const Reverse = ({
+  on = [],
+  children
+}) => children(on.reverse())
