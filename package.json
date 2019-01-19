@@ -26,10 +26,10 @@
   "devDependencies": {
     "nwb": "0.23.x",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "react-testing-library": "^5.4.4"
   },
-  "author": "",
-  "homepage": "",
+  "author": "Francesco Megna",
   "license": "MIT",
   "repository": "",
   "keywords": [
