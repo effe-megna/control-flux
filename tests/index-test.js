@@ -17,7 +17,9 @@ import {
   Find,
   FindIndex,
   Join,
-  Reverse
+  Reverse,
+  FilterBy,
+  Reduce
 } from "../src"
 
 describe('Components', () => {
@@ -63,6 +65,30 @@ describe('Components', () => {
       </Filter>
     ), node, () => {
       expect(node.innerHTML).toBe("really ✌️ amazing")
+    })
+  })
+
+  it("render by FilterBy", () => {
+    render((
+      <FilterBy
+        on={[
+          { type: "a", name: "A" },
+          { type: "b", name: "B" },
+          { type: "c", name: "C" }
+        ]}
+        property="type"
+        predicate={v => v !== "c"}
+      >
+        {v => (
+          <Join
+            on={v.map(v => v.name)}
+          >
+            {v => v}
+          </Join>
+        )}
+      </FilterBy>
+    ), node, () => {
+      expect(node.innerHTML).toBe("A,B")
     })
   })
 
@@ -151,13 +177,13 @@ describe('Components', () => {
     })
   })
 
-  // it("render by Times", () => {
-  //   render((
-  //     <Times n={2}>{i => "gg"}</Times>
-  //   ), node, () => {
-  //     expect(node.innerHTML).toBe("heyheyhey")
-  //   })
-  // })
+  it("render by Times", () => {
+    // render((
+    //   <Times n={2}>{i => "gg"}</Times>
+    // ), node, () => {
+    //   expect(node.innerHTML).toBe("heyheyhey")
+    // })
+  })
 
   it("render by Fill", () => {
     render((
@@ -240,6 +266,20 @@ describe('Components', () => {
       </Map>
     ), node, () => {
       expect(node.innerHTML).toBe("Francis")
+    })
+  })
+
+  it("render by Reduce", () => {
+    render((
+      <Reduce
+        on={[3, 5, 7]}
+        initialValue={0}
+        callback={((prev, curr) => prev + curr)}
+      >
+        {v => v}
+      </Reduce>
+    ), node, () => {
+      expect(node.innerHTML).toBe("15")
     })
   })
 })

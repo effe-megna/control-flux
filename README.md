@@ -16,25 +16,23 @@ pip install foobar
 
 ## 👓 Some example
 
-You can map users and display only the right user by username
+You can filter by property for display the right user
 ```javascript
-import { Map, If } from "control-flux"
+import { FilterBy } from "control-flux"
 
 export const User = () => {
   return (
-    <Map
+    <FilterBy
       on={[
-        { username: "Francis" },
-        { username: "John" },
-        { username: "Kit" }
+        { username: "Francis", type: "admin" },
+        { username: "John", type: "guest" },
+        { username: "Kit", type: "guest" }
       ]}
+      property="username"
+      predicate={username => username === "Francis"}
     >
-      {user => (
-        <If condition={user.username === "Francis"}>
-          {user.username}
-        </If>
-      )}
-    </Map>
+      {user => <User {...user} /> }
+    </FilterBy>
   )
 }
 ```
@@ -52,7 +50,7 @@ export const Times = () => {
 }
 ```
 
-or filter and join something like
+or filter and join
 ```javascript
 import { Filter, Join } from "control-flux"
 
@@ -92,16 +90,19 @@ result: really ✌️ amazing
 - FindIndex
 - Join
 - Reverse
+- Reduce
+- ReduceRight
 
 </details>
 
 <details>
 <summary>Extra</summary>
 
-- If
+- FilterBy
 - First
 - Last
 - Times
+- If
 </details>
 
 ## 🚶 Developed By

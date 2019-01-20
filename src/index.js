@@ -6,17 +6,26 @@ export const Every = ({ on = [], condition, children }) =>
 export const Filter = ({ on = [], predicate, children }) =>
   children(on.filter(predicate))
 
-export const First = ({ on = [] }) =>
-  on[0];
+export const FilterBy = ({ on = [], property, predicate, children }) =>
+  children(on.filter((v) => predicate(v[property])))
+
+export const First = ({ on = [], children }) =>
+  children(on[0]);
 
 export const If = ({ condition, elze = null, children }) =>
   (condition ? children : elze);
 
-export const Last = ({ on = [] }) =>
-  on[on.length - 1]
+export const Last = ({ on = [], children }) =>
+  children(on[on.length - 1])
 
 export const Map = ({ on = [], children }) =>
   on.map(children)
+
+export const Reduce = ({ on = [], callback, initialValue, children }) =>
+  children(on.reduce(callback, initialValue))
+
+export const ReduceRight = ({ on = [], callback, initialValue, children }) =>
+  children(on.reduceRight(callback, initialValue))
 
 export const Some = ({ on = [], condition, children }) =>
   on.some(condition) ? children : null
