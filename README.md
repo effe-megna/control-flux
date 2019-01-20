@@ -3,7 +3,6 @@
 [![Travis][build-badge]][build]
 [![npm package][npm-badge]][npm]
 [![Coveralls][coveralls-badge]][coveralls]
-[![](https://img.shields.io/github/stars/badges/shields.svg?label=Stars&style=social)](https://github.com/effe-megna/control-flux)
 
 🎈 **control-flux** provide components that mimic some methods of javascript, for a pure **declarative** approach, or something like that.
 
