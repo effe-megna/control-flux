@@ -19,7 +19,9 @@ import {
   Join,
   Reverse,
   FilterBy,
-  Reduce
+  Reduce,
+  ObjectKeys,
+  ObjectEntries
 } from "../src"
 
 describe('Components', () => {
@@ -280,6 +282,30 @@ describe('Components', () => {
       </Reduce>
     ), node, () => {
       expect(node.innerHTML).toBe("15")
+    })
+  })
+
+  it("render by ObjectKeys", () => {
+    render((
+      <ObjectKeys
+        on={{ fruit: "lemon" }}
+      >
+        {v => v}
+      </ObjectKeys>
+    ), node, () => {
+      expect(node.innerHTML).toBe("fruit")
+    })
+  })
+
+  it("render by ObjectEntries", () => {
+    render((
+      <ObjectEntries
+        on={{ fruit: "lemon" }}
+      >
+        {v => v}
+      </ObjectEntries>
+    ), node, () => {
+      expect(node.innerHTML).toBe("fruitlemon")
     })
   })
 })

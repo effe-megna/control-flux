@@ -96,6 +96,13 @@ result: really ✌️ amazing
 </details>
 
 <details>
+<summary>Object.prototype</summary>
+
+- ObjectKeys
+- ObjectEntries
+</details>
+
+<details>
 <summary>Extra</summary>
 
 - FilterBy
