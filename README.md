@@ -1,8 +1,7 @@
 # control-flux
 
-[![Travis][build-badge]][build]
+[![Build Status](https://travis-ci.org/effe-megna/control-flux.svg?branch=master)](https://travis-ci.org/effe-megna/control-flux)
 [![npm package][npm-badge]][npm]
-[![Coveralls][coveralls-badge]][coveralls]
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 <a href="https://twitter.com/intent/tweet?text=A React declarative approach with control-flux, or something like that: https://github.com/effe-megna/control-flux">
         <img src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social"/>
